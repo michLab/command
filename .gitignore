@@ -4,3 +4,6 @@ lib
 .qmake.stash
 Makefile
 *.o
+.clang-format
+submodules
+.qt_for_python

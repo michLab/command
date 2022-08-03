@@ -1,0 +1,3 @@
+[submodule "command/submodules/easyloggingpp"]
+	path = command/submodules/easyloggingpp
+	url = https://github.com/amrayn/easyloggingpp.git
