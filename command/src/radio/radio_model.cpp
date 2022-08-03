@@ -33,6 +33,44 @@ RadioModelFile::RadioModelStreamImpl::RadioModelStreamImpl(std::istream& input, 
 
 void RadioModelFile::RadioModelStreamImpl::set_power(Power p)
 {
+  std::lock_guard<std::mutex> lock(public_function_mutex);
+  out << "power," << p << std::endl;
+}
+
+void RadioModelFile::RadioModelStreamImpl::set_freq(Freq f)
+{
+  std::lock_guard<std::mutex> lock(public_function_mutex);
+  out << "freq," << f << std::endl;
+}
+
+void RadioModelFile::RadioModelStreamImpl::set_state(State s)
+{
+  std::lock_guard<std::mutex> lock(public_function_mutex);
+  out << "state," << s.value() << std::endl;
+}
+
+Power RadioModelFile::RadioModelStreamImpl::get_power()
+{
+  std::lock_guard<std::mutex> lock(public_function_mutex);
+  Power p;
+  in >> p;
+  return p;
+}
+
+Freq RadioModelFile::RadioModelStreamImpl::get_freq()
+{
+  std::lock_guard<std::mutex> lock(public_function_mutex);
+  Freq f;
+  in >> f;
+  return f;
+}
+
+State RadioModelFile::RadioModelStreamImpl::get_state()
+{
+  std::lock_guard<std::mutex> lock(public_function_mutex);
+  State s;
+  in >> s;
+  return s;
 }
 
 RadioModelStream::RadioModelStream(std::istream& input, std::ostream& output)
