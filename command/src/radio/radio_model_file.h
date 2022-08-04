@@ -10,20 +10,20 @@ namespace radio
 {
 class RadioModelStream : public IRadioModel
 {
-  class RadioModelStreamImpl;
+    class RadioModelStreamImpl;
 
 public:
-  RadioModelStream(std::istream& input, std::ostream& output);
-  ~RadioModelStream() = default;
-  void set_power(Power p);
-  void set_freq(Freq f);
-  void set_state(State s);
-  Power get_power();
-  Freq get_freq();
-  State get_state();
+    RadioModelStream(std::istream& input, std::ostream& output);
+    ~RadioModelStream() = default;
+    void set_power(Power p);
+    void set_freq(Freq f);
+    void set_state(State s);
+    Power get_power();
+    Freq get_freq();
+    State get_state();
 
 private:
-  std::unique_ptr<RadioModelStreamImpl> pimpl_;
+    std::unique_ptr<RadioModelStreamImpl> pimpl_;
 };
 
 }  // namespace radio

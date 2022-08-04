@@ -11,7 +11,7 @@ enum class State { active, passive };
 
 class IRadioModel
 {
-  public:
+public:
     virtual ~IRadioModel() = 0;
     virtual void set_power(Power p) = 0;
     virtual void set_freq(Freq f) = 0;
