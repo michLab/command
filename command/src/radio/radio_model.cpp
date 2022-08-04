@@ -1,96 +1,35 @@
-#ifndef RADIO_MODEL_H_
-#define RADIO_MODEL_H_
-
-#include "radio_model_file.h"
-
-#include <mutex>
+#include "radio_model.h"
 
 namespace radio
 {
-class RadioModelFile::RadioModelStreamImpl
+void RadioModel::set_power(const Power p)
 {
-public:
-    RadioModelStreamImpl(std::istream& input, std::ostream& output);
-    ~RadioModelStreamImpl() = default;
-    void set_power(Power p);
-    void set_freq(Freq f);
-    void set_state(State s);
-    Power get_power();
-    Freq get_freq();
-    State get_state();
-
-private:
-    std::mutex public_function_mutex;
-    std::istream in;
-    std::ostream out;
-};
-
-RadioModelFile::RadioModelStreamImpl::RadioModelStreamImpl(std::istream& input,
-                                                           std::ostream& output)
-{
-    in = input;
-    out = output;
+    check_power_preconditions(p);
+    set_power_impl(p)
 }
 
-void RadioModelFile::RadioModelStreamImpl::set_power(Power p)
+void RadioModel::set_freq(const Freq f)
 {
-    std::lock_guard<std::mutex> lock(public_function_mutex);
-    out << "power," << p << std::endl;
+    check_freq_preconditions(f);
+    set_freq_impl(f)
 }
 
-void RadioModelFile::RadioModelStreamImpl::set_freq(Freq f)
+void RadioModel::set_state(const State& s)
 {
-    std::lock_guard<std::mutex> lock(public_function_mutex);
-    out << "freq," << f << std::endl;
+    check_state_preconditions(s);
+    set_state_impl(s);
 }
 
-void RadioModelFile::RadioModelStreamImpl::set_state(State s)
-{
-    std::lock_guard<std::mutex> lock(public_function_mutex);
-    out << "state," << s.value() << std::endl;
-}
+Power RadioModel::get_power() { return get_power_impl(); }
 
-Power RadioModelFile::RadioModelStreamImpl::get_power()
-{
-    std::lock_guard<std::mutex> lock(public_function_mutex);
-    Power p;
-    in >> p;
-    return p;
-}
+Freq RadioModel::get_freq() { return get_freq_impl(); }
 
-Freq RadioModelFile::RadioModelStreamImpl::get_freq()
-{
-    std::lock_guard<std::mutex> lock(public_function_mutex);
-    Freq f;
-    in >> f;
-    return f;
-}
+State RadioModel::get_state() { return get_state_impl(); }
 
-State RadioModelFile::RadioModelStreamImpl::get_state()
-{
-    std::lock_guard<std::mutex> lock(public_function_mutex);
-    State s;
-    in >> s;
-    return s;
-}
+void RadioModel::check_power_preconditions(const Power p) const { return; }
 
-RadioModelStream::RadioModelStream(std::istream& input, std::ostream& output)
-    : pimpl_{std::make_unique<RadioModelStreamImpl>(input, output)};
-{
-}
+void RadioModel::check_freq_preconditions() const { return; }
 
-void RadioModelStream::set_power(Power p) { pimpl_->set_power(p); }
-
-void RadioModelStream::set_freq(Freq f) { pimpl_->set_freq(f); }
-
-void RadioModelStream::set_state(State s) { pimpl_->set_state(s); }
-
-Power RadioModelStream::get_power() { return pimpl_->get_power(); }
-
-Freq RadioModelStream::get_freq() { return pimpl_->get_freq(); }
-
-State RadioModelStream::get_state() { return pimpl_->get_state(); }
+void RadioModel::check_state_preconditions() const { return; }
 
 }  // namespace radio
-
-#endif  // RADIO_MODEL_H_
