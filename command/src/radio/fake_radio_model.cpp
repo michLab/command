@@ -21,34 +21,42 @@ void FakeRadioModel::check_power_preconditions(const Power p) const
 
 void FakeRadioModel::check_freq_preconditions(const Freq f) const
 {
+  (void)f;
 }
 
 void FakeRadioModel::check_state_preconditions(const State& s) const
 {
+  (void)s;
 }
 
 void FakeRadioModel::set_power_impl(const Power p)
 {
+  (void)p;
 }
 
 void FakeRadioModel::set_freq_impl(const Freq f)
 {
+  (void)f;
 }
 
 void FakeRadioModel::set_state_impl(const State& s)
 {
+  (void)s;
 }
 
 Power FakeRadioModel::get_power_impl()
 {
+  return 0;
 }
 
 Freq FakeRadioModel::get_freq_impl()
 {
+  return 0;
 }
 
 State FakeRadioModel::get_state_impl()
 {
+  return State();
 }
 
 }  // namespace radio
