@@ -3,8 +3,9 @@ include ($$HOME/common.pri)
 TEMPLATE = app
 TARGET = command
 DEPENDPATH += .
-INCLUDEPATH += $$HOME/src
+INCLUDEPATH += $$HOME/../command/src
 DESTDIR = $$HOME/bin
+
 
 win32:CONFIG += console
 

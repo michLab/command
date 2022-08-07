@@ -7,3 +7,4 @@ Makefile
 .clang-format
 submodules
 .qt_for_python
+build

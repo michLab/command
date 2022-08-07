@@ -3,7 +3,7 @@ include ($$HOME/common.pri)
 TEMPLATE = lib
 TARGET = radio
 DEPENDPATH += .
-INCLUDEPATH += . $$HOME/src
+INCLUDEPATH += . $$HOME/../command/src
 unix:DESTDIR = $$HOME/lib
 win32:DESTDIR = $$HOME/bin
 
