@@ -37,16 +37,19 @@ State RadioModel::get_state()
 
 void RadioModel::check_power_preconditions(const Power p) const
 {
+  (void)p;
   return;
 }
 
 void RadioModel::check_freq_preconditions(const Freq f) const
 {
+  (void)f;
   return;
 }
 
 void RadioModel::check_state_preconditions(const State& s) const
 {
+  (void)s;
   return;
 }
 
