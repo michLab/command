@@ -9,4 +9,4 @@ CONFIG += c++17
 unix:DEFINES += POSIX
 win32:DEFINES += WIN32
 
-win32:QMAKE_LFLAGS +=  -Wl,--no-undefined --enable-runtime-pseudo-reloc
+win32:QMAKE_LFLAGS +=  -Wl,--no-undefined --enable-runtime-pseudo-reloc 

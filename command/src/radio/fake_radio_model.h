@@ -2,6 +2,7 @@
 #define FAKE_RADIO_MODEL_H_
 
 #include <memory>
+#include <mutex>
 #include "radio_model.h"
 
 namespace radio

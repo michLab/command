@@ -8,9 +8,11 @@ unix:DESTDIR = $$HOME/lib
 win32:DESTDIR = $$HOME/bin
 
 # Input
-HEADERS += 
+HEADERS += radio_model.h \
+    fake_radio_model.h
 
-SOURCES +=
+SOURCES += radio_model.cpp \
+    fake_radio_model.cpp
 
-unix:LIBS +=
+unix:LIBS += -lpthread
 win32:LIBS +=

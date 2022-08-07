@@ -5,3 +5,4 @@ SUBDIRS += \
     backend \
     ui \
     app \
+    radio \
